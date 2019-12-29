@@ -1,7 +1,6 @@
 #include using namespace std;
 
 class BankAccount { protected: string name; double balance; public:
-
 	BankAccount(string n,double b)
 	{
                    name=n;
@@ -18,22 +17,23 @@ class BankAccount { protected: string name; double balance; public:
 	string getName () {return name;}
 	double getBalance () {return balance;}
 	friend ostream &operator<<(ostream &out, BankAccount *acct);
-
 }; ostream &operator<<(ostream &out, BankAccount *acct) { out<getName()<<"'s new balance:"<getBalance()<<endl; return out; }
 
-class GoldenAccount: public BankAccount { private: int numWithdraws; public: GoldenAccount(string na,double ba):BankAccount(na,ba) { numWithdraws=0; } void withdraw(double amount) {
 
+
+
+class GoldenAccount: public BankAccount { private: int numWithdraws; public: GoldenAccount(string na,double ba):BankAccount(na,ba) { numWithdraws=0; } void withdraw(double amount) {
          if(numWithdraws<2)
          balance-=amount;
          else
          balance=balance-amount-1.5;
-         
          numWithdraws++;
     }
 
-}; class SpecialAccount : public BankAccount { private: double interestrate; public:
 
-       SpecialAccount(string name,double blc,double rate):BankAccount(name,blc){
+
+}; class SpecialAccount : public BankAccount { private: double interestrate; public:
+      SpecialAccount(string name,double blc,double rate):BankAccount(name,blc){
                    interestrate=rate;
                    }
 	void withdraw(double amount)
@@ -75,21 +75,22 @@ cout<<client;
 
 cout<<"Enter SpecialAccount owner's name:";
 cin>>n1;
+
 cout<<"Enter "<<n1<<"'s SpecialAccount balance:";
 cin>>b;
+
 cout<<"Enter "<<n1<<"'s SpecialAccount interest rate:";
 cin>>i;
 
 BankAccount *client1= new SpecialAccount(n1,b,i);
-
 cout<<"Enter amount to deposit into "<<n1<<"'s account:";
 cin>>m;
+
 client1->deposit(m);
-
 cout<<client1;
-
 cout<<"Enter amount to transfer from "<<n1<<" to "<<n<<":";
 cin>>m;
+
 transfer(client1,client,m);
 cout<<client1;
 cout<<client;
